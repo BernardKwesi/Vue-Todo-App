@@ -7,12 +7,11 @@ app.component("list-items", {
               <p class="w-full text-grey-darkest">
                 {{todo.description}}
               </p>
-              <button
-                class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
+              <button v-if="todo.completed == false" @click="toggleCompleted(todo.id)" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
               >
                 Done
               </button>
-               <button
+               <button v-else @click="toggleCompleted(todo.id)"
                 class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
               >
                 Not Done
@@ -35,6 +34,9 @@ app.component("list-items", {
   methods: {
     removeItem(id) {
       this.$emit("remove-todo", id);
+    },
+    toggleCompleted(id) {
+      this.$emit("toggle-completed", id);
     },
   },
 });

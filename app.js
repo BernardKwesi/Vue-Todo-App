@@ -10,6 +10,10 @@ const app = Vue.createApp({
     },
     removeTodo(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
+    toggleComplete(id){
+      let todo = this.todos.find(todo => todo.id === id);
+      todo.completed = !todo.completed;
       
     },
   },
