@@ -2,28 +2,32 @@ app.component("list-items", {
   template:
     /*html */
     `
-         <div>
-            <div v-for="(todo) in todos" class="flex mb-4 items-center">
-              <p class="w-full text-grey-darkest">
-                {{todo.description}}
-              </p>
-              <button v-if="todo.completed == false" @click="toggleCompleted(todo.id)" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
-              >
-                Done
-              </button>
-               <button v-else @click="toggleCompleted(todo.id)"
-                class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
-              >
-                Not Done
-              </button>
-              <button
-                class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"
-              @click="removeItem(todo.id)">
-                Remove
-              </button>
+    <div class="flex justify-center items-center min-h-screen bg-[#cbd7e3]">
+        <div class="h-auto  w-96 bg-white rounded-lg p-4">
+            <div class="mt-3 text-sm text-[#8ea6c8] flex justify-between items-center">
+                <p class="set_date">Thursday 28 May</p>
+                <p class="set_time">8:00 AM</p>
             </div>
+            <p class="text-xl font-semibold mt-2 text-[#063c76]">To-do List</p>
             
-          </div>
+            <ul class="my-4 ">
+                <li class=" mt-4" id="1" v-for="todo in todos" :key="todo.id">
+                    <div class="flex gap-3 w-full">
+                        <div class="w-full h-12 bg-[#e0ebff] rounded-[7px] flex justify-start items-center px-3">
+                            <span :class="{'green' : todo.completed == true }" @click="toggleCompleted(todo.id)" class=" w-7 h-7 bg-white rounded-full border border-white transition-all cursor-pointer hover:border-[#36d344] flex justify-center items-center" ><i class="text-white fa fa-check"></i></span>
+                            <strike  :class="{'strike_none' : todo.completed == false }" class=" text-sm ml-4 text-[#5b7a9d] font-semibold"> {{todo.description}}</strike>
+                        </div>
+                        
+                    </div>
+                </li>
+              
+               
+            </ul>
+        </div>
+    </div>
+    
+    
+        
     `,
   props: {
     todos: {
@@ -40,3 +44,5 @@ app.component("list-items", {
     },
   },
 });
+
+
